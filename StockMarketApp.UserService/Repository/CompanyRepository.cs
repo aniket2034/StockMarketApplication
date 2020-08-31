@@ -1,0 +1,45 @@
+﻿using StockMarketApp.UserService.Models;
+using StockMarketLib;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace StockMarketApp.UserService.Repository
+{
+    public class CompanyRepository : ICompanyRepository
+    {
+        private UserContextDB context;
+
+        public CompanyRepository(UserContextDB context)
+        {
+            this.context = context;
+        }
+
+        public IEnumerable<Company> Get()
+        {
+            return context.Company;   
+        }
+
+        public IEnumerable<Company> GetMatchingCompanies(string str)
+        {
+            str = str.ToLower();
+            var ans = from names in context.Company
+                      where names.CompanyName.ToLower().StartsWith(str)
+                      select names;
+
+            return ans;
+        }
+
+        public Company GetCompany(int id)
+        { 
+            var ans = context.Company.Where(c => c.Id == id).Single();
+            return ans;
+        }
+
+        /*public IEnumerable<StockPrice> GetCompanyStockPrice(int Id, string to, string from, int periodicity)
+        {
+            throw new NotImplementedException();
+        }*/
+    }
+}
