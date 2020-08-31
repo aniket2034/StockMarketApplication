@@ -13,7 +13,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using StockMarketApp.AdminService.Models;
 using StockMarketApp.AdminService.Repository;
-using StockMarketLib;
 
 namespace StockMarketApp
 {
@@ -32,11 +31,9 @@ namespace StockMarketApp
             services.AddDbContext<AdminContextDB>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddScoped<IUploadRepository, UploadRepository>();
-            services.AddScoped<IRepository<StockExchange>, StockExchangeRepository>();
-            services.AddScoped<IRepository<Company>,CompanyRepository>();
-            services.AddScoped<IRepository<IPODetails>, IPODetailsRepository>();
-            services.AddScoped<IRepository<Sector>, SectorRepository>();
-            services.AddScoped<IRepository<StockExchangeCompanies>, StockExchangeCompaniesRepository>();
+            services.AddScoped<IStockExchangeRepository, StockExchangeRepository>();
+            services.AddScoped<ICompanyRepository,CompanyRepository>();
+            services.AddScoped<IIPODetailsRepository, IPODetailsRepository>();
             services.AddControllers();
         }
 

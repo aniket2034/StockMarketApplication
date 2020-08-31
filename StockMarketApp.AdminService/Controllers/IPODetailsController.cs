@@ -15,9 +15,9 @@ namespace StockMarketApp.AdminService.Controllers
     public class IPODetailsController : ControllerBase
     {
 
-        private IRepository<IPODetails> repository;
+        private IIPODetailsRepository repository;
 
-        public IPODetailsController(IRepository<IPODetails> repository)
+        public IPODetailsController(IIPODetailsRepository repository)
         {
             this.repository = repository;
         }
@@ -28,7 +28,7 @@ namespace StockMarketApp.AdminService.Controllers
         {
             if (ModelState.IsValid)
             {
-                var isAdded = repository.add(ip);
+                var isAdded = repository.Add(ip);
                 if (isAdded)
                 {
                     return Created("IPODETAILS", ip);

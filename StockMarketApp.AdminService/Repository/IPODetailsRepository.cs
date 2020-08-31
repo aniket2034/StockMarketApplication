@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using StockMarketApp.AdminService.Models;
 using StockMarketLib;
 using System;
@@ -10,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockMarketApp.AdminService.Repository
 {
-    public class IPODetailsRepository: IRepository<IPODetails>
+    public class IPODetailsRepository: IIPODetailsRepository
     {
         private AdminContextDB context;
 
@@ -19,7 +17,7 @@ namespace StockMarketApp.AdminService.Repository
             this.context = context;
         }
 
-        public bool add(IPODetails entity)
+        public bool Add(IPODetails entity)
         {
             try
             {
@@ -38,24 +36,24 @@ namespace StockMarketApp.AdminService.Repository
             }
         }
 
-        public bool Delete(IPODetails entity)
+        /*
+        public bool Update(Company entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Entry(entity).State = EntityState.Modified;
+                var updates = context.SaveChanges();
+                if (updates > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
-
-        public IEnumerable<IPODetails> Get()
-        {
-            return context.IPODetails;
-        }
-
-        public IPODetails Get(int key)
-        {
-            return context.IPODetails.Where(c => c.Id == key).Single();
-        }
-
-        public bool Update(IPODetails existing, IPODetails entity)
-        {
-            throw new NotImplementedException();
-        }
+        */
     }
 }

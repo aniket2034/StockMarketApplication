@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StockMarketApp.AdminService.Repository
 {
-    public class StockExchangeRepository : IRepository<StockExchange>
+    public class StockExchangeRepository : IStockExchangeRepository
     {
         private AdminContextDB context;
 
@@ -20,6 +20,8 @@ namespace StockMarketApp.AdminService.Repository
         {
             try
             {
+                //insert 
+                
                 context.StockExchange.Add(entity);
                 int updates = context.SaveChanges();
                 if (updates > 0)
@@ -34,25 +36,9 @@ namespace StockMarketApp.AdminService.Repository
             }
         }
 
-     
-        public bool Delete(StockExchange entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<StockExchange> Get()
         {
             return context.StockExchange;
-        }
-
-        public StockExchange Get(int key)
-        {
-            return context.StockExchange.Where(c => c.Id == key).Single();
-        }
-
-        public bool Update(StockExchange existing, StockExchange entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

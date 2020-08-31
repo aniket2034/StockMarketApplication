@@ -10,17 +10,20 @@ namespace StockMarketLib
     {
         [Key]
         public long Id { get; set; }
+
         [Required]
+        [StringLength(30)]
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-        public enum UserType
-        {
-            Admin=1,
-            User
-        }
+        [Required]
+        public UserType UserType { get; set; }
+        [EmailAddress]
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string MobileNumber { get; set; }
+       
         public bool Confirmed { get; set; }
     }
 }

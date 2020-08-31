@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using StockMarketApp.UserService.Models;
 using StockMarketApp.UserService.Repository;
+using StockMarketLib;
 
 namespace StockMarketApp.UserService
 {
@@ -30,8 +31,9 @@ namespace StockMarketApp.UserService
         {
             services.AddDbContext<UserContextDB>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
-            services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<IStockExchangeRepository, StockExchangeRepository>();
+            services.AddScoped<IRepository<Company>, CompanyRepository>();
+            services.AddScoped<IStockExchangeRepository<StockExchange>, StockExchangeRepository>();
+            services.AddScoped<IRepository<Sector>, SectorRepository>();
             services.AddControllers();
         }
 

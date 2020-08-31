@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace StockMarketApp.AdminService.Repository
 {
-    public interface ICompanyRepository
+    public interface ICompanyRepository<T>
     {
-        IEnumerable<Company> Get();
+        IEnumerable<T> Get();
 
-        Company Get(int key);
+        T Get(int key);
 
-        bool add(Company entity);
+        bool add(T entity);
 
-        bool Update(Company entity);
+        bool Update(T entity);
 
-        bool Delete(Company entity);
+        bool Delete(T entity);
 
         //IEnumerable<Company> Get(string str);
 

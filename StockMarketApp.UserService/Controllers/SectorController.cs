@@ -12,29 +12,28 @@ namespace StockMarketApp.UserService.Controllers
 {
     [Route("api/User/[controller]")]
     [ApiController]
-    public class StockExchangeController : ControllerBase
+    public class SectorController : ControllerBase
     {
+        private IRepository<Sector> repository;
 
-        private IStockExchangeRepository<StockExchange> repository;
-
-        public StockExchangeController(IStockExchangeRepository<StockExchange> repository)
+        public SectorController(IRepository<Sector> repository)
         {
             this.repository = repository;
         }
 
-        // GET: api/<StockExchangeController>
         [HttpGet]
-        public IEnumerable<StockExchange> Get()
+        public IEnumerable<Sector> Get()
         {
             return repository.Get();
         }
 
-        [HttpGet("{Id}")]
-       public IEnumerable<Object> GetCompanies(int Id)
+        // GET api/<SectorController>/id
+        [HttpGet("{id}")]
+        public Sector Get(int id)
         {
-            return repository.GetCompanies(Id);
+            return repository.Get(id);
         }
 
-       
+        
     }
 }

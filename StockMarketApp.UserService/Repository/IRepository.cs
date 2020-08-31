@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace StockMarketApp.UserService.Repository
 {
-    public interface IStockExchangeRepository<T>
+    public interface IRepository<T>
     {
         IEnumerable<T> Get();
+        IEnumerable<T> GetMatchingCompanies(string str);
 
-        IEnumerable<Object> GetCompanies(int id);
+        T Get(int Id);
+
+        //IEnumerable<Object> GetCompanyStockPrice(int Id, string to, string from, int periodicity);
 
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StockMarketApp.UserService.Repository
 {
-    public class StockExchangeRepository : IStockExchangeRepository
+    public class StockExchangeRepository : IStockExchangeRepository<StockExchange>
     {
         private UserContextDB context;
 
@@ -23,7 +23,8 @@ namespace StockMarketApp.UserService.Repository
             return context.StockExchange;
         }
 
-        public IEnumerable<Company> GetCompanies(int id)
+
+        IEnumerable<Object> IStockExchangeRepository<StockExchange>.GetCompanies(int id)
         {
             var query = from article in context.Company
                         where article.StockExchangeCompanies.Any(c => c.StockExchangeId == id)

@@ -12,14 +12,15 @@ namespace StockMarketApp.AdminService.Controllers
     [ApiController]
     public class CompanyController: ControllerBase
     {
-        private IRepository<Company> repository;
+        private ICompanyRepository repository;
 
-        public CompanyController(IRepository<Company> repository)
+        public CompanyController(ICompanyRepository repository)
         {
             this.repository = repository;
         }
 
         [HttpGet]
+        [Route("GetCompany")]
         public IEnumerable<Company> Get()
         {
             return repository.Get();
@@ -39,7 +40,7 @@ namespace StockMarketApp.AdminService.Controllers
                         return NotFound();
                     }
 
-                    var isUpdated = repository.Update(existing,company);
+                    var isUpdated = repository.Update(company);
                     if (isUpdated)
                     {
                         return Ok(company);

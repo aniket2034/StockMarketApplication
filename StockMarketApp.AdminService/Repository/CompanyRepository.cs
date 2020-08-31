@@ -9,7 +9,7 @@ using StockMarketLib;
 
 namespace StockMarketApp.AdminService.Repository
 {
-    public class CompanyRepository : IRepository<Company>
+    public class CompanyRepository : ICompanyRepository
     {
         private AdminContextDB context;
 
@@ -60,11 +60,11 @@ namespace StockMarketApp.AdminService.Repository
             return context.Company;
         }
 
-        public bool Update(Company existing, Company entity)
+        public bool Update(Company entity)
         {
             try
             {
-                context.Entry(existing).CurrentValues.SetValues(entity);
+                context.Entry(entity).State = EntityState.Modified;
                 var updates = context.SaveChanges();
                 if (updates > 0)
                 {
@@ -79,9 +79,11 @@ namespace StockMarketApp.AdminService.Repository
         }
 
 
-        Company IRepository<Company>.Get(int key)
+        public Company Get(int key)
         {
-            return context.Company.Where(c => c.Id == key).Single();
+            var company = context.Company.Find(key);
+            return company;
         }
+
     }
 }

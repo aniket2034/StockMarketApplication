@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockMarketApp.AdminService.Models;
 
 namespace StockMarketApp.AdminService.Migrations
 {
     [DbContext(typeof(AdminContextDB))]
-    partial class AdminContextDBModelSnapshot : ModelSnapshot
+    [Migration("20200831202831_createContext")]
+    partial class createContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

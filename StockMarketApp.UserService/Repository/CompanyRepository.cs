@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StockMarketApp.UserService.Repository
 {
-    public class CompanyRepository : ICompanyRepository
+    public class CompanyRepository : IRepository<Company>
     {
         private UserContextDB context;
 
@@ -31,7 +31,7 @@ namespace StockMarketApp.UserService.Repository
             return ans;
         }
 
-        public Company GetCompany(int id)
+        public Company Get(int id)
         { 
             var ans = context.Company.Where(c => c.Id == id).Single();
             return ans;

@@ -15,9 +15,9 @@ namespace StockMarketApp.AdminService.Controllers
     public class StockExchangeController : ControllerBase
     {
 
-        private IRepository<StockExchange> repository;
+        private IStockExchangeRepository repository;
 
-        public StockExchangeController(IRepository<StockExchange> repository)
+        public StockExchangeController(IStockExchangeRepository repository)
         {
             this.repository=repository;
         }
@@ -25,6 +25,7 @@ namespace StockMarketApp.AdminService.Controllers
 
         // GET: api/<StockExchangeController>
         [HttpGet]
+        [Route("GetStockExchange")]
         public IEnumerable<StockExchange> Get()
         {
             return repository.Get();
@@ -32,14 +33,15 @@ namespace StockMarketApp.AdminService.Controllers
 
         // POST api/<StockExchangeController>
         [HttpPost]
-        public IActionResult Post([FromForm] StockExchange stock)
+        [Route("AddStockExchange")]
+        public IActionResult Post([FromBody] StockExchange stock)
         {
             if (ModelState.IsValid)
             {
                 var isAdded = repository.add(stock);
                 if (isAdded)
                 {
-                    return Created("StockExchange", stock);
+                    return Created("student", stock);
                 }
             }
             return BadRequest(ModelState);

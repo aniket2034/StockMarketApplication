@@ -14,9 +14,9 @@ namespace StockMarketApp.UserService.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private ICompanyRepository repository;
+        private IRepository<Company> repository;
 
-        public CompanyController(ICompanyRepository repository)
+        public CompanyController(IRepository<Company> repository)
         {
             this.repository = repository;
         }
@@ -30,17 +30,17 @@ namespace StockMarketApp.UserService.Controllers
         [HttpGet("{Id}")]
         public Company GetCompany(int Id)
         {
-            return repository.GetCompany(Id);
+            return repository.Get(Id);
         }
 
-        /*
+        
         [HttpPost]
         [Route("GetMatchingCompanies")]
-        public I Post([FromForm] string str)
+        public IEnumerable<Company> Post([FromForm] string str)
         {
             return repository.GetMatchingCompanies(str);
         }
-        */
+        
 
         
 
