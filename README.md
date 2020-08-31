@@ -1,0 +1,2 @@
+# StockMarketApplication
+Stock market charting
