@@ -30,7 +30,7 @@ namespace StockMarketApp.UserService.Controllers
         }
 
         [HttpGet("{Id}")]
-       public IEnumerable<Object> GetCompanies(int Id)
+       public IEnumerable<Object> GetCompanies(string Id)
         {
             return repository.GetCompanies(Id);
         }

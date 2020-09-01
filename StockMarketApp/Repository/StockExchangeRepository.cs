@@ -45,9 +45,10 @@ namespace StockMarketApp.AdminService.Repository
             return context.StockExchange;
         }
 
-        public StockExchange Get(int key)
+        public StockExchange Get(object key)
         {
-            return context.StockExchange.Where(c => c.Id == key).Single();
+            return context.StockExchange.Where(c => c.StockExchangeCode == key.ToString()).Single();
+
         }
 
         public bool Update(StockExchange existing, StockExchange entity)

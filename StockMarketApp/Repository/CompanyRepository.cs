@@ -79,9 +79,9 @@ namespace StockMarketApp.AdminService.Repository
         }
 
 
-        Company IRepository<Company>.Get(int key)
+        Company IRepository<Company>.Get(object key)
         {
-            return context.Company.Where(c => c.Id == key).Single();
+            return context.Company.Where(c => c.Id == Convert.ToInt32(key)).Single();
         }
     }
 }

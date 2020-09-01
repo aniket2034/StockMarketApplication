@@ -44,7 +44,7 @@ namespace StockMarketApp.AdminService.Repository
             return context.Sector;
         }
 
-        public Sector Get(int key)
+        public Sector Get(object key)
         {
             throw new NotImplementedException();
         }

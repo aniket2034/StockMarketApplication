@@ -24,10 +24,10 @@ namespace StockMarketApp.UserService.Repository
         }
 
 
-        IEnumerable<Object> IStockExchangeRepository<StockExchange>.GetCompanies(int id)
+        IEnumerable<Object> IStockExchangeRepository<StockExchange>.GetCompanies(string id)
         {
             var query = from article in context.Company
-                        where article.StockExchangeCompanies.Any(c => c.StockExchangeId == id)
+                        where article.StockExchangeCompanies.Any(c => c.StockExchangeCode == id)
                         select article;
 
             return query;

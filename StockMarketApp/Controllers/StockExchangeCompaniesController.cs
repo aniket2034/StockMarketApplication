@@ -39,11 +39,11 @@ namespace StockMarketApp.AdminService.Controllers
 
         // POST api/<StockExchangeCompaniesController>
         [HttpPost("{id}/{s_id}")]
-        public IActionResult Post(int id,int s_id)
+        public IActionResult Post(int id,string s_id)
         {
                 StockExchangeCompanies s = new StockExchangeCompanies();
                 s.CompanyId = id;
-                s.StockExchangeId = s_id;
+                s.StockExchangeCode = s_id;
 
                 var check = repository.add(s);
 

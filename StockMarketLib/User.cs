@@ -8,22 +8,20 @@ namespace StockMarketLib
 {
     public class User
     {
-        [Key]
-        public long Id { get; set; }
-
+        public int Id { get; set; }
         [Required]
         [StringLength(30)]
         public string Username { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 6)]
         public string Password { get; set; }
-        [Required]
+        [StringLength(30)]
         public UserType UserType { get; set; }
+        [StringLength(30)]
         [EmailAddress]
-        [Required]
         public string Email { get; set; }
-        [Required]
-        public string MobileNumber { get; set; }
-       
+        [StringLength(30)]
+        public long Mobile { get; set; }
         public bool Confirmed { get; set; }
     }
 }

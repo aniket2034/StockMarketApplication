@@ -10,7 +10,7 @@ namespace StockMarketApp.UserService.Repository
     {
         IEnumerable<T> Get();
 
-        IEnumerable<Object> GetCompanies(int id);
+        IEnumerable<Object> GetCompanies(string id);
 
     }
 }

@@ -8,15 +8,8 @@ namespace StockMarketLib
 {
     public class StockExchange
     {
-        public StockExchange()
-        {
-            IPODetails = new HashSet<IPODetails>();
-            StockExchangeCompanies = new HashSet<StockExchangeCompanies>();
-            StockPrices = new HashSet<StockPrice>();
-        }
-
         [Key]
-        public int Id { get; set; }
+        public string StockExchangeCode { get; set; }
         [Required]
        
         public string Name { get; set; }

@@ -8,13 +8,6 @@ namespace StockMarketLib
 {
     public class Sector
     {
-
-        public Sector()
-        {
-            Company = new HashSet<Company>();
-
-        }
-
         [Key]
         public int Id { get; set; }
         [Required]

@@ -1,11 +1,8 @@
 ﻿namespace StockMarketLib
-{ 
-        public enum UserType
-        {
-            Admin = 1,
-            User
-        }
-    
-
-
+{
+    public enum UserType
+    {
+        Admin=1,
+        User
+    }
 }

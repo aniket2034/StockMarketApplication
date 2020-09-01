@@ -10,14 +10,14 @@ namespace StockMarketApp.AdminService.Repository
     {
         IEnumerable<T> Get();
 
-        T Get(int key);
+        T Get(object key);
 
         bool add(T entity);
 
         bool Update(T existing,T entity);
 
         bool Delete(T entity);
-
+        
         //IEnumerable<Company> Get(string str);
 
     }

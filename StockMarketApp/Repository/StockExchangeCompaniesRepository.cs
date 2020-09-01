@@ -60,7 +60,7 @@ namespace StockMarketApp.AdminService.Repository
             throw new NotImplementedException();
         }
 
-        public StockExchangeCompanies Get(int key)
+        public StockExchangeCompanies Get(object key)
         {
             throw new NotImplementedException();
         }

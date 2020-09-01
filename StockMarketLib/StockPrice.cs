@@ -20,6 +20,6 @@ namespace StockMarketLib
 
         public int StockExchangeId { get; set; }
         public virtual StockExchange StockExchange { get; set; }
-
+        public virtual StockExchangeCompanies StockExchangeCompanies { get; set; }
     }
 }

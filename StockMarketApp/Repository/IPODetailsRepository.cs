@@ -48,9 +48,9 @@ namespace StockMarketApp.AdminService.Repository
             return context.IPODetails;
         }
 
-        public IPODetails Get(int key)
+        public IPODetails Get(object key)
         {
-            return context.IPODetails.Where(c => c.Id == key).Single();
+            return context.IPODetails.Where(c => c.Id == Convert.ToInt32(key)).Single();
         }
 
         public bool Update(IPODetails existing, IPODetails entity)
