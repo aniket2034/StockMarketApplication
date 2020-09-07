@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using StockMarketLib;
+using StockMarketLibrary;
 using StockMarketApp.AdminService.Models;
 using StockMarketApp.AdminService.Repository;
 using StockMarketApp.Dtos;
@@ -31,7 +31,7 @@ namespace StockMarketApp.Tests.Unit
             var cse = new StockExchangeCompanies
             {
                 CompanyId = 1,
-                StockExchangeCode = "BSE"
+                StockExchangeId = "BSE"
             };
 
             return new List<StockPrice>

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StockMarketLib
+namespace StockMarketLibrary
 {
     public class StockPrice
     {
@@ -18,7 +18,7 @@ namespace StockMarketLib
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
 
-        public int StockExchangeId { get; set; }
+        public string StockExchangeId { get; set; }
         public virtual StockExchange StockExchange { get; set; }
         public virtual StockExchangeCompanies StockExchangeCompanies { get; set; }
     }

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using StockMarketApp.UserService.Models;
 using StockMarketApp.UserService.Repository;
-using StockMarketLib;
+using StockMarketLibrary;
 
 namespace StockMarketApp.UserService
 {
@@ -29,6 +29,13 @@ namespace StockMarketApp.UserService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMvc().AddJsonOptions(o =>
+            {
+                o.JsonSerializerOptions.PropertyNamingPolicy = null;
+                o.JsonSerializerOptions.DictionaryKeyPolicy = null;
+            });
+
             services.AddDbContext<UserContextDB>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddScoped<IRepository<Company>, CompanyRepository>();

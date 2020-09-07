@@ -4,15 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StockMarketLib
+namespace StockMarketLibrary
 {
     public class Company
     {
             [Key]
             public int Id { get; set; }
             [Required]
-            
-            public string CompanyName { get; set; }
+            public string name { get; set; }
             public decimal Turnover { get; set; }
             public string CEO { get; set; }
             public string BoardOfDirectors { get; set; }

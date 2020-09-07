@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StockMarketLib
+namespace StockMarketLibrary
 {
     public class StockExchange
     {
         [Key]
-        public string StockExchangeCode { get; set; }
+        public string id { get; set; }
         [Required]
        
         public string Name { get; set; }

@@ -1,13 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using StockMarketApp.AuthService.Data;
-using StockMarketLib;
+using StockMarketLibrary;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+
 
 namespace StockMarketApp.AuthService.Repositories
 {
@@ -23,21 +24,22 @@ namespace StockMarketApp.AuthService.Repositories
         }
         
 
-        public Tuple<bool, string> Login(string username, string password)
+        public Tuple<bool, TokenDetails> Login(string username, string password)
         {
             try
             {
-                Tuple<bool, string> result;
+                Tuple<bool, TokenDetails> result;
                 var user = context.Users.FirstOrDefault(u => u.Username == username
                             && u.Password == password && u.Confirmed);
                 if (user == null)
                 {
-                    result = new Tuple<bool, string>(false, "");
+                    result = new Tuple<bool, TokenDetails> (false,null);
                 }
                 else
                 {
                     var token = GenerateJwtToken(user);
-                    result = new Tuple<bool, string>(true, token);
+                    var temp = new TokenDetails(token,(int)user.UserType);
+                    result = new Tuple<bool, TokenDetails>(true, temp);
                 }
                 return result;
             }
@@ -51,7 +53,7 @@ namespace StockMarketApp.AuthService.Repositories
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.Role, user.UserType.ToString())
             };

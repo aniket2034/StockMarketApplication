@@ -10,8 +10,8 @@ using StockMarketApp.AdminService.Models;
 namespace StockMarketApp.AdminService.Migrations
 {
     [DbContext(typeof(AdminContextDB))]
-    [Migration("20200901162155_initial")]
-    partial class initial
+    [Migration("20200906225631_cf5")]
+    partial class cf5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace StockMarketApp.AdminService.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("StockMarketLib.Company", b =>
+            modelBuilder.Entity("StockMarketLibrary.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,15 +37,15 @@ namespace StockMarketApp.AdminService.Migrations
                     b.Property<string>("CEO")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("SectorId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Turnover")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -54,7 +54,7 @@ namespace StockMarketApp.AdminService.Migrations
                     b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("StockMarketLib.IPODetails", b =>
+            modelBuilder.Entity("StockMarketLibrary.IPODetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,12 +73,8 @@ namespace StockMarketApp.AdminService.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StockExchangeCode")
-                        .IsRequired()
+                    b.Property<string>("StockExchangeId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("StockExchangeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("TotalNumberOfShares")
                         .HasColumnType("int");
@@ -88,12 +84,12 @@ namespace StockMarketApp.AdminService.Migrations
                     b.HasIndex("CompanyId")
                         .IsUnique();
 
-                    b.HasIndex("StockExchangeCode");
+                    b.HasIndex("StockExchangeId");
 
                     b.ToTable("IPODetails");
                 });
 
-            modelBuilder.Entity("StockMarketLib.Sector", b =>
+            modelBuilder.Entity("StockMarketLibrary.Sector", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -112,9 +108,9 @@ namespace StockMarketApp.AdminService.Migrations
                     b.ToTable("Sector");
                 });
 
-            modelBuilder.Entity("StockMarketLib.StockExchange", b =>
+            modelBuilder.Entity("StockMarketLibrary.StockExchange", b =>
                 {
-                    b.Property<string>("StockExchangeCode")
+                    b.Property<string>("id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Brief")
@@ -130,12 +126,12 @@ namespace StockMarketApp.AdminService.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StockExchangeCode");
+                    b.HasKey("id");
 
                     b.ToTable("StockExchange");
                 });
 
-            modelBuilder.Entity("StockMarketLib.StockExchangeCompanies", b =>
+            modelBuilder.Entity("StockMarketLibrary.StockExchangeCompanies", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -145,22 +141,19 @@ namespace StockMarketApp.AdminService.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("StockExchangeCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StockExchangeCode1")
+                    b.Property<string>("StockExchangeId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("StockExchangeCode1");
+                    b.HasIndex("StockExchangeId");
 
                     b.ToTable("StockExchangeCompanies");
                 });
 
-            modelBuilder.Entity("StockMarketLib.StockPrice", b =>
+            modelBuilder.Entity("StockMarketLibrary.StockPrice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,14 +169,11 @@ namespace StockMarketApp.AdminService.Migrations
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StockExchangeCode")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("StockExchangeCompaniesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockExchangeId")
-                        .HasColumnType("int");
+                    b.Property<string>("StockExchangeId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
@@ -192,14 +182,14 @@ namespace StockMarketApp.AdminService.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("StockExchangeCode");
-
                     b.HasIndex("StockExchangeCompaniesId");
+
+                    b.HasIndex("StockExchangeId");
 
                     b.ToTable("StockPrice");
                 });
 
-            modelBuilder.Entity("StockMarketLib.User", b =>
+            modelBuilder.Entity("StockMarketLibrary.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -236,58 +226,56 @@ namespace StockMarketApp.AdminService.Migrations
                     b.ToTable("users");
                 });
 
-            modelBuilder.Entity("StockMarketLib.Company", b =>
+            modelBuilder.Entity("StockMarketLibrary.Company", b =>
                 {
-                    b.HasOne("StockMarketLib.Sector", "Sector")
+                    b.HasOne("StockMarketLibrary.Sector", "Sector")
                         .WithMany("Company")
                         .HasForeignKey("SectorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StockMarketLib.IPODetails", b =>
+            modelBuilder.Entity("StockMarketLibrary.IPODetails", b =>
                 {
-                    b.HasOne("StockMarketLib.Company", "Company")
+                    b.HasOne("StockMarketLibrary.Company", "Company")
                         .WithOne("IPODetails")
-                        .HasForeignKey("StockMarketLib.IPODetails", "CompanyId")
+                        .HasForeignKey("StockMarketLibrary.IPODetails", "CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StockMarketLib.StockExchange", "StockExchange")
+                    b.HasOne("StockMarketLibrary.StockExchange", "StockExchange")
                         .WithMany("IPODetails")
-                        .HasForeignKey("StockExchangeCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StockExchangeId");
                 });
 
-            modelBuilder.Entity("StockMarketLib.StockExchangeCompanies", b =>
+            modelBuilder.Entity("StockMarketLibrary.StockExchangeCompanies", b =>
                 {
-                    b.HasOne("StockMarketLib.Company", "Company")
+                    b.HasOne("StockMarketLibrary.Company", "Company")
                         .WithMany("StockExchangeCompanies")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StockMarketLib.StockExchange", "StockExchange")
+                    b.HasOne("StockMarketLibrary.StockExchange", "StockExchange")
                         .WithMany("StockExchangeCompanies")
-                        .HasForeignKey("StockExchangeCode1");
+                        .HasForeignKey("StockExchangeId");
                 });
 
-            modelBuilder.Entity("StockMarketLib.StockPrice", b =>
+            modelBuilder.Entity("StockMarketLibrary.StockPrice", b =>
                 {
-                    b.HasOne("StockMarketLib.Company", "Company")
+                    b.HasOne("StockMarketLibrary.Company", "Company")
                         .WithMany("StockPrices")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StockMarketLib.StockExchange", "StockExchange")
-                        .WithMany("StockPrices")
-                        .HasForeignKey("StockExchangeCode");
-
-                    b.HasOne("StockMarketLib.StockExchangeCompanies", "StockExchangeCompanies")
+                    b.HasOne("StockMarketLibrary.StockExchangeCompanies", "StockExchangeCompanies")
                         .WithMany()
                         .HasForeignKey("StockExchangeCompaniesId");
+
+                    b.HasOne("StockMarketLibrary.StockExchange", "StockExchange")
+                        .WithMany("StockPrices")
+                        .HasForeignKey("StockExchangeId");
                 });
 #pragma warning restore 612, 618
         }

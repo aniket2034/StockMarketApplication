@@ -1,4 +1,4 @@
-﻿namespace StockMarketLib
+﻿namespace StockMarketLibrary
 {
     public enum UserType
     {

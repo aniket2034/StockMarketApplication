@@ -1,5 +1,5 @@
 ﻿using StockMarketApp.AdminService.Models;
-using StockMarketLib;
+using StockMarketLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;

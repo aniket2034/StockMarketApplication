@@ -1,5 +1,5 @@
 ﻿using StockMarketApp.UserService.Models;
-using StockMarketLib;
+using StockMarketLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace StockMarketApp.UserService.Repository
         {
             str = str.ToLower();
             var ans = from names in context.Company
-                      where names.CompanyName.ToLower().StartsWith(str)
+                      where names.name.ToLower().StartsWith(str)
                       select names;
 
             return ans;

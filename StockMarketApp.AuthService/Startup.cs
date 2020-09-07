@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using StockMarketApp.AuthService.Data;
 using StockMarketApp.AuthService.Repositories;
-using StockMarketLib;
+using StockMarketLibrary;
 
 namespace StockMarketApp.AuthService
 {

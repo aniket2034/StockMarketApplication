@@ -13,7 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using StockMarketApp.AdminService.Models;
 using StockMarketApp.AdminService.Repository;
-using StockMarketLib;
+using StockMarketLibrary;
 
 namespace StockMarketApp
 {
@@ -29,6 +29,18 @@ namespace StockMarketApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMvc().AddJsonOptions(o =>
+            {
+                o.JsonSerializerOptions.PropertyNamingPolicy = null;
+                o.JsonSerializerOptions.DictionaryKeyPolicy = null;
+            });
+
+            /*
+            services.AddControllers()
+            .AddNewtonsoftJson();
+            */
+
             services.AddDbContext<AdminContextDB>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddScoped<IUploadRepository, UploadRepository>();
@@ -38,6 +50,7 @@ namespace StockMarketApp
             services.AddScoped<IRepository<Sector>, SectorRepository>();
             services.AddScoped<IRepository<StockExchangeCompanies>, StockExchangeCompaniesRepository>();
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

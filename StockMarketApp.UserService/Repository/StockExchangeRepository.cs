@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using StockMarketApp.UserService.Models;
-using StockMarketLib;
+using StockMarketLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace StockMarketApp.UserService.Repository
         IEnumerable<Object> IStockExchangeRepository<StockExchange>.GetCompanies(string id)
         {
             var query = from article in context.Company
-                        where article.StockExchangeCompanies.Any(c => c.StockExchangeCode == id)
+                        where article.StockExchangeCompanies.Any(c => c.StockExchangeId == id)
                         select article;
 
             return query;

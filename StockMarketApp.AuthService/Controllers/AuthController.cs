@@ -5,8 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using StockMarketApp.AuthService.Repositories;
-using StockMarketLib;
+using StockMarketLibrary;
+
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,26 +26,16 @@ namespace StockMarketApp.AuthService.Controllers
             this.repository = repository;
         }
         
-        [HttpGet]
-        public IActionResult Get(string username, string password)
+        [HttpPost("login")]
+        public IActionResult Post(LoginData item)
         {
             //SSV
-            if (!(string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password)))
+            if (!(string.IsNullOrEmpty(item.userName) && string.IsNullOrEmpty(item.password)))
             {
                 try
                 {
-                    var result = repository.Login(username, password);
-                    // success -> token
-                    if (result.Item1)
-                    {
-                        return Ok(result.Item2); //token
-                    }
-                    // fail -> 
-                    // invalid credentials
-                    else
-                    {
-                        return BadRequest("Invalid credentials");
-                    }
+                    var result = repository.Login(item.userName,item.password);
+                    return Ok(result.Item2);
                 }
                 catch (Exception ex) // internal server error
                 {

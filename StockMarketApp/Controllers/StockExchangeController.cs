@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StockMarketApp.AdminService.Repository;
-using StockMarketLib;
+using StockMarketLibrary;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,14 +24,14 @@ namespace StockMarketApp.AdminService.Controllers
 
 
         // GET: api/<StockExchangeController>
-        [HttpGet]
+        [HttpGet("getAllStockExchanges")]
         public IEnumerable<StockExchange> Get()
         {
             return repository.Get();
         }
 
         // POST api/<StockExchangeController>
-        [HttpPost]
+        [HttpPost("addStockExchange")]
         public IActionResult Post([FromForm] StockExchange stock)
         {
             if (ModelState.IsValid)

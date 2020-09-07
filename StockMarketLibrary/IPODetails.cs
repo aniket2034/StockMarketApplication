@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StockMarketLib
+namespace StockMarketLibrary
 {
     public class IPODetails
     {
@@ -22,7 +22,7 @@ namespace StockMarketLib
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
 
-        public int StockExchangeId { get; set; }
+        public string StockExchangeId { get; set; }
         public virtual StockExchange StockExchange { get; set; }
 
 

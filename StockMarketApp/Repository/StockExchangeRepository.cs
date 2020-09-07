@@ -1,5 +1,5 @@
 ﻿using StockMarketApp.AdminService.Models;
-using StockMarketLib;
+using StockMarketLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +47,7 @@ namespace StockMarketApp.AdminService.Repository
 
         public StockExchange Get(object key)
         {
-            return context.StockExchange.Where(c => c.StockExchangeCode == key.ToString()).Single();
+            return context.StockExchange.Where(c => c.id == key.ToString()).Single();
 
         }
 

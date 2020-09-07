@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StockMarketApp\StockMarketLib\StockMarketLib.csproj" />
     <ProjectReference Include="..\StockMarketApp\StockMarketApp.AdminService.csproj" />
   </ItemGroup>
 

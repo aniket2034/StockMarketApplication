@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StockMarketApp.AdminService.Models;
-using StockMarketLib;
+using StockMarketLibrary;
 
 
 namespace StockMarketApp.AdminService.Repository

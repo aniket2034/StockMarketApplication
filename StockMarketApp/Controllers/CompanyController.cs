@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StockMarketApp.AdminService.Repository;
-using StockMarketLib;
+using StockMarketLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +19,14 @@ namespace StockMarketApp.AdminService.Controllers
             this.repository = repository;
         }
 
-        [HttpGet]
+        [HttpGet("getAllCompanies")]
         public IEnumerable<Company> Get()
         {
             return repository.Get();
         }
 
-        [HttpPut("{id}")]
+
+        [HttpPut("updateCompany/{id}")]
         public IActionResult Put(int id, [FromForm] Company company)
         {
             
@@ -50,7 +51,7 @@ namespace StockMarketApp.AdminService.Controllers
         }
 
         
-        [HttpDelete("{id}")]
+        [HttpDelete("deleteCompany/{id}")]
         public IActionResult Delete(int id)
         {
             var company = repository.Get(id);
@@ -66,7 +67,7 @@ namespace StockMarketApp.AdminService.Controllers
             return StatusCode(500, "Internal server error");
         }
 
-        [HttpPost]
+        [HttpPost("addCompany")]
         public IActionResult Post([FromForm] Company company)
         {
             if (ModelState.IsValid)

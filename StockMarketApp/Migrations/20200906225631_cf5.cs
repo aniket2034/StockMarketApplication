@@ -2,7 +2,7 @@
 
 namespace StockMarketApp.AdminService.Migrations
 {
-    public partial class initial : Migration
+    public partial class cf5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,7 +24,7 @@ namespace StockMarketApp.AdminService.Migrations
                 name: "StockExchange",
                 columns: table => new
                 {
-                    StockExchangeCode = table.Column<string>(nullable: false),
+                    id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Brief = table.Column<string>(nullable: true),
                     ContactAddress = table.Column<string>(nullable: true),
@@ -32,7 +32,7 @@ namespace StockMarketApp.AdminService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StockExchange", x => x.StockExchangeCode);
+                    table.PrimaryKey("PK_StockExchange", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,7 +59,7 @@ namespace StockMarketApp.AdminService.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(nullable: false),
+                    name = table.Column<string>(nullable: false),
                     Turnover = table.Column<decimal>(nullable: false),
                     CEO = table.Column<string>(nullable: true),
                     BoardOfDirectors = table.Column<string>(nullable: true),
@@ -88,8 +88,7 @@ namespace StockMarketApp.AdminService.Migrations
                     OpenDateTime = table.Column<string>(nullable: true),
                     Remarks = table.Column<string>(nullable: true),
                     CompanyId = table.Column<int>(nullable: false),
-                    StockExchangeId = table.Column<int>(nullable: false),
-                    StockExchangeCode = table.Column<string>(nullable: false)
+                    StockExchangeId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,11 +100,11 @@ namespace StockMarketApp.AdminService.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_IPODetails_StockExchange_StockExchangeCode",
-                        column: x => x.StockExchangeCode,
+                        name: "FK_IPODetails_StockExchange_StockExchangeId",
+                        column: x => x.StockExchangeId,
                         principalTable: "StockExchange",
-                        principalColumn: "StockExchangeCode",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,8 +113,7 @@ namespace StockMarketApp.AdminService.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StockExchangeCode = table.Column<string>(nullable: true),
-                    StockExchangeCode1 = table.Column<string>(nullable: true),
+                    StockExchangeId = table.Column<string>(nullable: true),
                     CompanyId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -128,10 +126,10 @@ namespace StockMarketApp.AdminService.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StockExchangeCompanies_StockExchange_StockExchangeCode1",
-                        column: x => x.StockExchangeCode1,
+                        name: "FK_StockExchangeCompanies_StockExchange_StockExchangeId",
+                        column: x => x.StockExchangeId,
                         principalTable: "StockExchange",
-                        principalColumn: "StockExchangeCode",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -145,8 +143,7 @@ namespace StockMarketApp.AdminService.Migrations
                     Date = table.Column<string>(nullable: true),
                     Time = table.Column<string>(nullable: true),
                     CompanyId = table.Column<int>(nullable: false),
-                    StockExchangeId = table.Column<int>(nullable: false),
-                    StockExchangeCode = table.Column<string>(nullable: true),
+                    StockExchangeId = table.Column<string>(nullable: true),
                     StockExchangeCompaniesId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -159,16 +156,16 @@ namespace StockMarketApp.AdminService.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StockPrice_StockExchange_StockExchangeCode",
-                        column: x => x.StockExchangeCode,
-                        principalTable: "StockExchange",
-                        principalColumn: "StockExchangeCode",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_StockPrice_StockExchangeCompanies_StockExchangeCompaniesId",
                         column: x => x.StockExchangeCompaniesId,
                         principalTable: "StockExchangeCompanies",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StockPrice_StockExchange_StockExchangeId",
+                        column: x => x.StockExchangeId,
+                        principalTable: "StockExchange",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -184,9 +181,9 @@ namespace StockMarketApp.AdminService.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_IPODetails_StockExchangeCode",
+                name: "IX_IPODetails_StockExchangeId",
                 table: "IPODetails",
-                column: "StockExchangeCode");
+                column: "StockExchangeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StockExchangeCompanies_CompanyId",
@@ -194,9 +191,9 @@ namespace StockMarketApp.AdminService.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StockExchangeCompanies_StockExchangeCode1",
+                name: "IX_StockExchangeCompanies_StockExchangeId",
                 table: "StockExchangeCompanies",
-                column: "StockExchangeCode1");
+                column: "StockExchangeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StockPrice_CompanyId",
@@ -204,14 +201,14 @@ namespace StockMarketApp.AdminService.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StockPrice_StockExchangeCode",
-                table: "StockPrice",
-                column: "StockExchangeCode");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_StockPrice_StockExchangeCompaniesId",
                 table: "StockPrice",
                 column: "StockExchangeCompaniesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StockPrice_StockExchangeId",
+                table: "StockPrice",
+                column: "StockExchangeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StockMarketApp.UserService.Repository;
-using StockMarketLib;
+using StockMarketLibrary;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,7 +21,7 @@ namespace StockMarketApp.UserService.Controllers
             this.repository = repository;
         }
 
-        [HttpGet]
+        [HttpGet("getAllCompanies")]
         public IEnumerable<Company> Get()
         {
             return repository.Get();
