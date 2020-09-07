@@ -1,0 +1,25 @@
+<br>
+
+<div class="container">
+    <h3 style="color:red">Admin Login page</h3>
+  <table class="table table-bordered" border="1" style="width:300px;">
+    <tr>
+      <td>UserName</td>
+      <td><input type="text" [(ngModel)]="input.userName"  class="form-control" required></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" [(ngModel)]="input.password" class="form-control" required></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button class="btn btn-info" (click)="SignIn()">SignIn</button>
+      </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <span>{{errMsg}}</span>
+          </td>
+    </tr>
+  </table>
+</div>

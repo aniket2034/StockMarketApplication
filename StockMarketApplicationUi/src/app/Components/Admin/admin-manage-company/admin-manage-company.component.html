@@ -1,0 +1,195 @@
+<div class="container">
+    <div class="col-lg 4">
+        <button type="submit" class="btn btn-primary" style="margin:5px;" (click)="newCompany()">Add New Company</button>
+        <button type="submit" class="btn btn-primary" style="margin:5px;" (click)="updateCompany()">Update Existing Company</button>
+        <button type="submit" class="btn btn-primary" style="margin:5px;" (click)="deleteCompany()">Deactivate Company</button>
+        
+        <button type="submit" class="btn btn-primary" style="float:right">Back</button>
+    
+    </div>
+
+
+    
+    <div *ngIf="isNewCompanyShown">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="" >Company Name:</label>
+                <div class="col-sm-10"> 
+                    <input type="text" [(ngModel)]="company_item.name" name="name" class="form-control" id="" placeholder="Enter Company Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Turnover:</label>
+                <div class="col-sm-10">          
+                    <input type="number"[(ngModel)]="company_item.turnover" name="Turnover" class="form-control" id="" placeholder="Enter Turnover" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">CEO Name:</label>
+                <div class="col-sm-10">          
+                    <input type="text" [(ngModel)]="company_item.ceo" name="ceo" class="form-control" id="" placeholder="Enter CEO Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Brief:</label>
+                <div class="col-sm-10">          
+                    <input type="text" [(ngModel)]="company_item.brief" name="Brief" class="form-control" id="" placeholder="Enter Brief">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Sector Id:</label>
+                <div class="col-sm-10">          
+                    <input type="number" [(ngModel)]="company_item.sectorId" name="sector id" class="form-control" id="" placeholder="Enter Sector">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" (click)="cancel()"
+                >Cancel</button>
+
+                <button type="submit" class="btn btn-primary" style="float:right" (click)="addCompany()"
+                >AddIpo</button>
+        </form>
+    </div>
+  
+
+     
+    <div *ngIf="isUpdateCompanyShown">
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Company Id:</label>
+                <div class="col-sm-5">
+                    <input type="number" [(ngModel)]="company_item.id" name="company Id" class="form-control" id="" placeholder="Enter Company Id" >
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Company Name:</label>
+                <div class="col-sm-5">
+                    <input type="text" [(ngModel)]="company_item.name" name="Company name" class="form-control" id="" placeholder="Enter Company Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Turnover:</label>
+                <div class="col-sm-10">          
+                    <input type="number" [(ngModel)]="company_item.turnover" name="Turnover" class="form-control" id="" placeholder="Enter Turnover" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">CEO Name:</label>
+                <div class="col-sm-10">          
+                    <input type="text" [(ngModel)]="company_item.ceo" name="Ceo" class="form-control" id="" placeholder="Enter CEO Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Brief:</label>
+                <div class="col-sm-10">          
+                    <input type="text" [(ngModel)]="company_item.brief" name="Brief" class="form-control" id="" placeholder="Enter Brief">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Sector Id:</label>
+                <div class="col-sm-10">          
+                    <input type="number" [(ngModel)]="company_item.sectorId" name="Sector Id" class="form-control" id="sector" placeholder="Enter Sector" >
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" (click)="cancel()"
+                >Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="update()"
+            style="float: right;">Save</button>
+
+      
+        </form>
+    </div>
+
+
+     
+    <div *ngIf="isDeleteCompanyShown">
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Company Id:</label>
+                <div class="col-sm-5">
+                    <input type="number" [(ngModel)]="company_item.id" name="Company Id" class="form-control" id="" placeholder="Enter Company Id">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" (click)="cancel()"
+                >Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="delete()"
+            style="float: right;">Delete</button>
+
+      
+        </form>
+    </div>
+
+
+    <div *ngIf="isAddIpoShown">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="price">Price Per Share:</label>
+                <div class="col-sm-5">
+                    <input type="number" class="form-control" id="price" placeholder="Enter Price Per Share" name="price">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="shares">Number of Shares:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="shares" placeholder="Enter the number of shares" name="shares">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="date">Date:</label>
+                <div class="col-sm-10">          
+                    <input type="text" class="form-control" id="date" placeholder="Enter date" name="date">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="time">Time:</label>
+                <div class="col-sm-10">          
+                    <input type="text" class="form-control" id="time" placeholder="Enter Time" name="time">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="remarks">Remarks:</label>
+                <div class="col-sm-10">          
+                    <input type="text" class="form-control" id="remarks" placeholder="Enter Remarks" name="remarks">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="stockexchange">StockExchange Id:</label>
+                <div class="col-sm-10">          
+                    <input type="number" class="form-control" id="stockexchange" placeholder="Enter StockExchangeId" name="stockexchange">
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" (click)="back()"
+                >Back</button>
+            <button type="submit" class="btn btn-primary" click="addCompany()"
+                style="float: right;">Add Company</button>
+
+      
+        </form>
+    </div>
+
+
+
+
+</div>
