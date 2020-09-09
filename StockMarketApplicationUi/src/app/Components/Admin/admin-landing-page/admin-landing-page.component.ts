@@ -33,7 +33,13 @@ export class AdminLandingPageComponent implements OnInit {
     this.router.navigateByUrl("adminlandingpage/adminmanageipo");
   }
 
-  public LogOut()
+  public adminManageSector()
+  {
+    this.router.navigateByUrl("adminlandingpage/adminmanagesector");
+  }
+
+
+  public Logoff()
   {
     localStorage.clear();
     this.router.navigateByUrl("");

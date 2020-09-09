@@ -25,10 +25,19 @@
                 (click)="adminManageIPO()">Manage IPO Details</button>
                 
             </td>
+
+            <td>
+                
+                <button type="button" class="btn btn-primary"
+                (click)="adminManageSector()">Manage Sector</button>
+                
+            </td>
+
+
             <td>
                 
                 <button type="button" class="btn btn-primary" 
-                style="font-size: 25px; background: rgb(233, 179, 78);"
+                style="font-size: 25px; background: rgb(233, 179, 78);" (click)="Logoff()"
                 >Log Out</button>
                 
             </td>
@@ -37,3 +46,4 @@
     
 </div>
 
+<router-outlet></router-outlet>

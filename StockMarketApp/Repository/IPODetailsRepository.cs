@@ -1,12 +1,10 @@
 ﻿
-
-using Microsoft.EntityFrameworkCore;
 using StockMarketApp.AdminService.Models;
 using StockMarketLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace StockMarketApp.AdminService.Repository
 {
@@ -19,11 +17,12 @@ namespace StockMarketApp.AdminService.Repository
             this.context = context;
         }
 
+    
+
         public bool add(IPODetails entity)
         {
             try
             {
-                //insert 
                 context.IPODetails.Add(entity);
                 int updates = context.SaveChanges();
                 if (updates > 0)

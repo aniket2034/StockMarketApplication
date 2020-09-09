@@ -10,8 +10,8 @@ using StockMarketApp.AdminService.Models;
 namespace StockMarketApp.AdminService.Migrations
 {
     [DbContext(typeof(AdminContextDB))]
-    [Migration("20200906225631_cf5")]
-    partial class cf5
+    [Migration("20200908213410_con1")]
+    partial class con1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,11 +64,11 @@ namespace StockMarketApp.AdminService.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("OpenDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("OpenDateTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<float>("PricePerShare")
-                        .HasColumnType("real");
+                    b.Property<double>("PricePerShare")
+                        .HasColumnType("float");
 
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");

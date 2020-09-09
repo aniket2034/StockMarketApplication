@@ -1,5 +1,5 @@
 export class Sector {
     id: number;
-    name:string;
+    sectorName:string;
     brief:string;
 }

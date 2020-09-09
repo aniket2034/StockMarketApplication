@@ -10,16 +10,16 @@ export class StockExchangeServiceService {
 
   constructor(private client: HttpClient) { }
 
-  path : string = "https://localhost:44392";
+  path:string = "https://localhost:44392";
 
   addStockExchange(stockexchange: StockExchange):Observable<StockExchange>
   {
-    return this.client.post<StockExchange>(this.path+"AdminService/StockExchange/addStockExchange", stockexchange);
+    return this.client.post<StockExchange>(this.path+"/AdminService/StockExchange/addStockExchange", stockexchange);
   }
 
-  listOfStockExchnage():Observable<StockExchange[]>
+  listOfStockExchange():Observable<StockExchange[]>
   {
-    return this.client.get<StockExchange[]>(this.path+"UserService/StockExchange/getAllStockExchanges");
+    return this.client.get<StockExchange[]>(this.path+"/UserService/StockExchange/getAllStockExchanges");
   }
 
 

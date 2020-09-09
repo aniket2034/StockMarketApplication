@@ -11,9 +11,12 @@ namespace StockMarketLibrary
     {
         [Key]
         public int Id { get; set; }
-        public float PricePerShare { get; set; }
+        [Required]
+        public double PricePerShare { get; set; }
+        [Required]
         public int TotalNumberOfShares { get; set; }
-        public string OpenDateTime { get; set; }
+        [Required]
+        public DateTime OpenDateTime { get; set; }
         public string Remarks { get; set; }
        
        

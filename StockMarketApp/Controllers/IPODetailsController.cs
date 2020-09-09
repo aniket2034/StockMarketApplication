@@ -24,14 +24,23 @@ namespace StockMarketApp.AdminService.Controllers
 
 
         [HttpPost]
-        public IActionResult Post([FromForm] IPODetails ip)
+        public IActionResult Post([FromBody] IPODetailsDto entity)
         {
             if (ModelState.IsValid)
             {
-                var isAdded = repository.add(ip);
+                var new_item = new IPODetails
+                {
+                    PricePerShare = entity.pricePerShare,
+                    TotalNumberOfShares = entity.totalNumberShares,
+                    OpenDateTime = Convert.ToDateTime(entity.date + " " + entity.time),
+                    Remarks = entity.remarks,
+                    CompanyId = entity.companyId,
+                    StockExchangeId = entity.stockExchangeId
+                };
+                var isAdded = repository.add(new_item);
                 if (isAdded)
                 {
-                    return Created("IPODETAILS", ip);
+                    return Created("IPODETAILS", new_item);
                 }
             }
             return BadRequest(ModelState);

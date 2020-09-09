@@ -113,7 +113,7 @@ export class AdminManageCompanyComponent implements OnInit {
       this.service.AddCompany(this.company_item).subscribe(res=>
         {
           console.log(res);
-            
+          alert("Company Added");
         } ,(err)=>{
           console.log(err.error)
         }
@@ -129,7 +129,7 @@ export class AdminManageCompanyComponent implements OnInit {
       this.service.deleteCompany(this.company_item.id).subscribe(res=>
         {
           console.log("deleted");
-          window.location.reload();
+          alert("delete Complete");
         },(err)=>{
           console.log(err.error)
         }
@@ -142,6 +142,7 @@ export class AdminManageCompanyComponent implements OnInit {
       this.service.updateCompany(this.company_item).subscribe(res=>
         {
           console.log("updated");
+          alert("update Complete");
           window.location.reload();
         },(err)=>{
           console.log(err.error)

@@ -3,7 +3,6 @@
         <button type="submit" class="btn btn-primary" style="margin:5px;" (click)="newCompany()">Add New Company</button>
         <button type="submit" class="btn btn-primary" style="margin:5px;" (click)="updateCompany()">Update Existing Company</button>
         <button type="submit" class="btn btn-primary" style="margin:5px;" (click)="deleteCompany()">Deactivate Company</button>
-        
         <button type="submit" class="btn btn-primary" style="float:right">Back</button>
     
     </div>
@@ -134,62 +133,7 @@
     </div>
 
 
-    <div *ngIf="isAddIpoShown">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="price">Price Per Share:</label>
-                <div class="col-sm-5">
-                    <input type="number" class="form-control" id="price" placeholder="Enter Price Per Share" name="price">
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="shares">Number of Shares:</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" id="shares" placeholder="Enter the number of shares" name="shares">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="date">Date:</label>
-                <div class="col-sm-10">          
-                    <input type="text" class="form-control" id="date" placeholder="Enter date" name="date">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="time">Time:</label>
-                <div class="col-sm-10">          
-                    <input type="text" class="form-control" id="time" placeholder="Enter Time" name="time">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="remarks">Remarks:</label>
-                <div class="col-sm-10">          
-                    <input type="text" class="form-control" id="remarks" placeholder="Enter Remarks" name="remarks">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="stockexchange">StockExchange Id:</label>
-                <div class="col-sm-10">          
-                    <input type="number" class="form-control" id="stockexchange" placeholder="Enter StockExchangeId" name="stockexchange">
-                </div>
-            </div>
-
-
-            <button type="submit" class="btn btn-primary" (click)="back()"
-                >Back</button>
-            <button type="submit" class="btn btn-primary" click="addCompany()"
-                style="float: right;">Add Company</button>
-
-      
-        </form>
-    </div>
-
-
-
+    
+    <
 
 </div>

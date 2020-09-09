@@ -1,6 +1,6 @@
 export class TokenDetail {
 
     token: string;
-    userType: number;
+    usertype: number;
 
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using StockMarketApp.AdminService.Models;
 using StockMarketApp.AdminService.Repository;
 using StockMarketLibrary;
@@ -30,17 +33,6 @@ namespace StockMarketApp
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMvc().AddJsonOptions(o =>
-            {
-                o.JsonSerializerOptions.PropertyNamingPolicy = null;
-                o.JsonSerializerOptions.DictionaryKeyPolicy = null;
-            });
-
-            /*
-            services.AddControllers()
-            .AddNewtonsoftJson();
-            */
-
             services.AddDbContext<AdminContextDB>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddScoped<IUploadRepository, UploadRepository>();
@@ -50,6 +42,11 @@ namespace StockMarketApp
             services.AddScoped<IRepository<Sector>, SectorRepository>();
             services.AddScoped<IRepository<StockExchangeCompanies>, StockExchangeCompaniesRepository>();
             services.AddControllers();
+
+           
+
+
+
 
         }
 
@@ -66,7 +63,7 @@ namespace StockMarketApp
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

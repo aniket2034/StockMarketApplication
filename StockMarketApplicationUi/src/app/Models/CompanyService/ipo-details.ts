@@ -2,7 +2,8 @@ export class IpoDetails {
 
     pricePerShare:number;
     totalNumberOfShares:number;
-    openDateTime:string;
+    date:string;
+    time:string;
     remarks:string;
     companyId:number;
     stockExchangeId:number;

@@ -62,11 +62,11 @@ namespace StockMarketApp.AdminService.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("OpenDateTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("OpenDateTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<float>("PricePerShare")
-                        .HasColumnType("real");
+                    b.Property<double>("PricePerShare")
+                        .HasColumnType("float");
 
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");

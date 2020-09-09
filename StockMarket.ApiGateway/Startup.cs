@@ -37,11 +37,7 @@ namespace StockMarket.ApiGateway
                 );
             });
 
-            services.AddMvc().AddJsonOptions(o =>
-            {
-                o.JsonSerializerOptions.PropertyNamingPolicy = null;
-                o.JsonSerializerOptions.DictionaryKeyPolicy = null;
-            });
+           
 
             services.AddControllers();
             services.AddOcelot(Configuration);

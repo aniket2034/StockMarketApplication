@@ -32,7 +32,7 @@ namespace StockMarketApp.AdminService.Controllers
 
         // POST api/<StockExchangeController>
         [HttpPost("addStockExchange")]
-        public IActionResult Post([FromForm] StockExchange stock)
+        public IActionResult Post([FromBody] StockExchange stock)
         {
             if (ModelState.IsValid)
             {

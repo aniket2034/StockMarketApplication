@@ -38,7 +38,7 @@ namespace StockMarketApp.AdminService.Controllers
 
         // POST api/<SectorController>
         [HttpPost]
-        public IActionResult Post([FromForm] Sector value)
+        public IActionResult Post([FromBody] Sector value)
         {
             if (ModelState.IsValid)
             {

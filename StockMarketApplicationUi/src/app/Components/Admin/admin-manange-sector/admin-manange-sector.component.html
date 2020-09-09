@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Sector Name:</label>
+                <div class="col-sm-5">
+                    <input type="text" [(ngModel)]="sector_item.sectorName" class="form-control" id="" placeholder="Enter Name for Sector" name="Sector Name">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Brief:</label>
+                <div class="col-sm-5">
+                    <input type="text" [(ngModel)]="sector_item.brief" class="form-control" id="" placeholder="Enter Remarks about Sector" name="Brief">
+                </div>
+            </div>
+
+            
+            <button type="submit" class="btn btn-primary" (click)="back()"
+                >Back</button>
+            <button type="submit" class="btn btn-primary" (click)="addSector()"
+                style="float: right;">Add Sector</button>
+
+
+        </form>
+    </div>
+</div>

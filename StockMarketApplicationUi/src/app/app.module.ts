@@ -12,6 +12,9 @@ import { AdminManageCompanyComponent } from './Components/Admin/admin-manage-com
 import { AdminManageExchangeComponent } from './Components/Admin/admin-manage-exchange/admin-manage-exchange.component';
 import { AdminManageIPOComponent } from './Components/Admin/admin-manage-ipo/admin-manage-ipo.component';
 import { AdminUploadFileComponent } from './Components/Admin/admin-upload-file/admin-upload-file.component';
+import { UserloginComponent } from './Components/User/userlogin/userlogin.component';
+import { UsersignupComponent } from './Components/User/usersignup/usersignup.component';
+import { AdminManangeSectorComponent } from './Components/Admin/admin-manange-sector/admin-manange-sector.component';
 
 
 @NgModule({
@@ -24,6 +27,9 @@ import { AdminUploadFileComponent } from './Components/Admin/admin-upload-file/a
     AdminManageExchangeComponent,
     AdminManageIPOComponent,
     AdminUploadFileComponent,
+    UserloginComponent,
+    UsersignupComponent,
+    AdminManangeSectorComponent,
 
   ],
   imports: [

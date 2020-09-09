@@ -34,6 +34,8 @@ namespace StockMarketApp.UserService.Controllers
             return repository.Get(id);
         }
 
+      
+
         
     }
 }

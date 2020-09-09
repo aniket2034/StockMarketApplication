@@ -38,12 +38,12 @@ namespace StockMarketApp.AdminService.Controllers
         }
 
         // POST api/<StockExchangeCompaniesController>
-        [HttpPost("{id}/{s_id}")]
-        public IActionResult Post(int id,string s_id)
+        [HttpPost]
+        public IActionResult Post(StockCompanyDto entity)
         {
                 StockExchangeCompanies s = new StockExchangeCompanies();
-                s.CompanyId = id;
-                s.StockExchangeId = s_id;
+                s.CompanyId = Int16.Parse(entity.companyId);
+                s.StockExchangeId = entity.stockExchangeId;
 
                 var check = repository.add(s);
 

@@ -22,8 +22,10 @@ export class AdminLoginComponent implements OnInit {
   { console.log(this.input);
     this.service.SignIn(this.input).subscribe(res=>{
       console.log(res);
+      console.log(res.usertype);
+      console.log(res.token);
       if(res.token==null || res.token=="") {this.errMsg="Wrong username or password";}
-      else if(res.userType!=1) {this.errMsg="Wrong username or password";}
+      else if((res.usertype)!=1) {this.errMsg="Wrong username or password";}
       else
       {
         localStorage.setItem("token", res.token);

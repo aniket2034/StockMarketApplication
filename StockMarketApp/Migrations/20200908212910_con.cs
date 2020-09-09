@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StockMarketApp.AdminService.Migrations
 {
-    public partial class cf5 : Migration
+    public partial class con : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -83,9 +84,9 @@ namespace StockMarketApp.AdminService.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PricePerShare = table.Column<float>(nullable: false),
+                    PricePerShare = table.Column<double>(nullable: false),
                     TotalNumberOfShares = table.Column<int>(nullable: false),
-                    OpenDateTime = table.Column<string>(nullable: true),
+                    OpenDateTime = table.Column<DateTime>(nullable: false),
                     Remarks = table.Column<string>(nullable: true),
                     CompanyId = table.Column<int>(nullable: false),
                     StockExchangeId = table.Column<string>(nullable: true)

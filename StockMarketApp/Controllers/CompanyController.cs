@@ -27,13 +27,14 @@ namespace StockMarketApp.AdminService.Controllers
 
 
         [HttpPut("updateCompany/{id}")]
-        public IActionResult Put(int id, [FromForm] Company company)
+        public IActionResult Put(int id, [FromBody] Company company)
         {
             
             if (ModelState.IsValid)
             {
                 if (id == company.Id)
                 {
+                
                     var existing = repository.Get(company.Id);
                     if (existing == null)
                     {
@@ -68,7 +69,7 @@ namespace StockMarketApp.AdminService.Controllers
         }
 
         [HttpPost("addCompany")]
-        public IActionResult Post([FromForm] Company company)
+        public IActionResult Post([FromBody] Company company)
         {
             if (ModelState.IsValid)
             {
